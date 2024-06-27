@@ -2,7 +2,7 @@ import { Flex, Text, Tooltip } from "@radix-ui/themes";
 import Image from "next/image";
 import { IAwayTeam, IHomeTeam } from "../../../global";
 
-interface ITeamComponent {
+export interface ITeamComponent {
   data: IHomeTeam | IAwayTeam;
   isWinner?: boolean;
 }
