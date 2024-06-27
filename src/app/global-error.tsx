@@ -4,7 +4,7 @@ import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button, Flex, Heading, Text } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 
-export default function Error({
+export default function GlobalError({
   error,
   reset,
 }: {
