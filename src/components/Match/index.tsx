@@ -5,7 +5,7 @@ import { isNumber } from "lodash";
 import { IMatch } from "../../../global";
 import Team from "../Team";
 
-interface IMatchComponent {
+export interface IMatchComponent {
   data: IMatch;
 }
 
