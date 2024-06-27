@@ -54,11 +54,11 @@ export interface ITeamIndex {
 export interface IMatch {
   id: number;
   utcDate: string;
-  status: string;
+  status?: string;
   matchday: number;
-  stage: string;
-  group: any;
-  lastUpdated: string;
+  stage?: string;
+  group?: any;
+  lastUpdated?: string;
   homeTeam: IHomeTeam;
   awayTeam: IAwayTeam;
   score: IScore;
