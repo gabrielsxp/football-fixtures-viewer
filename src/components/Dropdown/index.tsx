@@ -10,14 +10,21 @@ import { IChampionship, IMatchday, ITeam } from "../../../global";
 
 type IDropdownElement = ITeam | IChampionship;
 
-interface IDropdown {
-  data: { [x: string]: ITeam | IChampionship | IMatchday };
+export interface IDropdown {
+  data: {
+    [x: string]:
+      | ITeam
+      | IChampionship
+      | IMatchday
+      | { name: string; id: number };
+  };
   iconAttribute?: string;
   queryAttribute: string;
   defaultValue?: string;
   placeholder?: string;
   paramsBlacklist?: string[];
   shouldOrderList?: boolean;
+  id?: string;
 }
 
 const Dropdown = ({
@@ -28,6 +35,7 @@ const Dropdown = ({
   placeholder = "Selecione um atributo",
   paramsBlacklist = [],
   shouldOrderList = true,
+  id,
 }: IDropdown) => {
   const [value, setValue] = useState(defaultValue);
 
@@ -51,7 +59,9 @@ const Dropdown = ({
   return (
     <Flex direction="column" className="w-full">
       <Flex gap="4" align="center" mb="2">
-        <Text weight="bold">{placeholder}</Text>
+        <Text role="label" htmlFor={id} weight="bold">
+          {placeholder}
+        </Text>
         {value && (
           <Button
             onClick={() => onChange("")}
@@ -64,7 +74,7 @@ const Dropdown = ({
         )}
       </Flex>
       <Select.Root value={value} onValueChange={onChange}>
-        <Select.Trigger placeholder={placeholder}>
+        <Select.Trigger name={id} id={id} placeholder={placeholder}>
           <Flex as="span" align="center" gap="2">
             {!!value && !!data?.[value] && icon && (
               <Image
