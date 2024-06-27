@@ -81,16 +81,26 @@ const Dropdown = ({
                 width={24}
                 height={24}
                 src={icon}
-                alt={`${data[value].name} championship crest`}
+                alt={`${data[value].name} ícone`}
               />
             )}
             {!!value && !!data?.[value] && data[value].name}
           </Flex>
         </Select.Trigger>
         <Select.Content position="popper">
-          {listing.map(({ name, id }) => (
-            <Select.Item key={id} value={String(id)}>
-              {name}
+          {listing.map((elementData) => (
+            <Select.Item key={elementData.id} value={String(elementData.id)}>
+              <Flex align="center" gap="4">
+                {iconAttribute && !!elementData?.[iconAttributeKey] && (
+                  <Image
+                    width={24}
+                    height={24}
+                    src={elementData?.[iconAttributeKey] as string}
+                    alt={`${elementData.name} ícone`}
+                  />
+                )}
+                {elementData.name}
+              </Flex>
             </Select.Item>
           ))}
         </Select.Content>
