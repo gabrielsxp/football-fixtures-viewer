@@ -18,25 +18,25 @@ export default function Error({
       <Heading color="red" size="5">
         Algo deu Errado!
       </Heading>
-      {error?.message?.includes("Please check your subscription") ? (
+      {error?.message?.includes("Please check your subscription") && (
         <>
           <Text size="3" color="crimson">
             Sem permissão para buscar este campeonato
           </Text>
-          <Button
-            color="gray"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          >
-            <ArrowLeftIcon /> Voltar ao início
-          </Button>
         </>
-      ) : (
-        <Button color="gray" onClick={() => reset()}>
-          <ArrowLeftIcon /> Tentar Novamente
-        </Button>
       )}
+      <Button color="gray" onClick={() => reset()}>
+        <ArrowLeftIcon /> Tentar Novamente
+      </Button>
+      <Button
+        color="blue"
+        onClick={() => {
+          window.location.href = "/";
+        }}
+        mt="2"
+      >
+        <ArrowLeftIcon /> Voltar ao início
+      </Button>
     </Flex>
   );
 }
