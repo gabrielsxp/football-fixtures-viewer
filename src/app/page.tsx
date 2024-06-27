@@ -9,7 +9,11 @@ import { Suspense } from "react";
 import { IChampionship, IChampionshipIndex, ISearchParams } from "../../global";
 
 async function getChampionships(): Promise<IChampionshipIndex> {
-  const res = await fetch(`${BASE_URL}/competitions`);
+  const res = await fetch(`${BASE_URL}/competitions`, {
+    headers: {
+      "X-AUTH-TOKEN": process.env.X_AUTH_TOKEN as string,
+    },
+  });
 
   if (!res.ok) {
     const error = await res.json();
@@ -41,7 +45,7 @@ export default async function Home({
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 md:p-12">
-      <Heading as="h1" size="6">
+      <Heading as="h1" size="6" className="mb-4 md:mb-6">
         Tabela do Campeonato
       </Heading>
       <div className="w-full max-w-7xl flex flex-col gap-4">

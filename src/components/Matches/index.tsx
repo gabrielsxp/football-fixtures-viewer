@@ -1,6 +1,7 @@
 import { BASE_URL } from "@/constants";
 import { Card, Flex, Heading, Section, Text } from "@radix-ui/themes";
 import { Dictionary, first, groupBy, isEmpty, last, orderBy } from "lodash";
+import Image from "next/image";
 import { Suspense } from "react";
 import { IChampionship, IMatch } from "../../../global";
 import { Loading } from "../Dropdown/loading";
@@ -94,9 +95,21 @@ async function Matches(params: IMatches) {
       </Suspense>
       <Flex direction="column" align="center" gap="4" width="100%" mt="8">
         <Flex direction="column" align="center" gap="4">
-          <Heading as="h2" size={{ initial: "4", md: "5" }}>
-            {championship?.name}
-          </Heading>
+          <Flex gap="4" align="center" wrap="wrap">
+            {championship?.name && (
+              <Heading as="h2" size={{ initial: "4", md: "5" }}>
+                {championship?.name}
+              </Heading>
+            )}
+            {championship?.emblem && (
+              <Image
+                width={48}
+                height={48}
+                alt={`${championship?.name} ícone`}
+                src={championship?.emblem}
+              />
+            )}
+          </Flex>
           {Object.entries(matches).map(([group, matches]) => {
             const groupName = group !== "null" ? `${group}ª rodada` : "Final";
             return (

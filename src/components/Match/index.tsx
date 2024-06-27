@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { isNumber } from "lodash";
 import { IMatch } from "../../../global";
 import Team from "../Team";
+import Status from "./Status";
 
 export interface IMatchComponent {
   data: IMatch;
@@ -12,7 +13,7 @@ export interface IMatchComponent {
 type IColor = TextProps["color"];
 
 const Match = ({ data }: IMatchComponent) => {
-  const { homeTeam, awayTeam, score, utcDate } = data;
+  const { homeTeam, awayTeam, score, utcDate, status } = data;
   const winner = score?.winner;
 
   const isHomeTeamWinner = winner === "HOME_TEAM";
@@ -52,15 +53,18 @@ const Match = ({ data }: IMatchComponent) => {
           </Text>
           {awayTeam && <Team isWinner={isAwayTeamWinner} data={awayTeam} />}
         </Grid>
-        <Flex width="100%" justify="center">
-          <Flex align="center" gap="2">
-            <ClockIcon />
-            <Text align="center">
-              {utcDate
-                ? format(utcDate, "dd/MM/yyyy HH:ss")
-                : "Horário não definido"}
-            </Text>
+        <Flex direction="column" justify="center" gap="2">
+          <Flex width="100%" justify="center">
+            <Flex align="center" gap="2">
+              <ClockIcon />
+              <Text align="center">
+                {utcDate
+                  ? format(utcDate, "dd/MM/yyyy HH:ss")
+                  : "Horário não definido"}
+              </Text>
+            </Flex>
           </Flex>
+          {status && <Status status={status} />}
         </Flex>
       </Flex>
     </Card>
